@@ -13,4 +13,26 @@ export default defineNuxtConfig({
     "@nuxt/ui",
     "@nuxtjs/color-mode",
   ],
+
+  //hide tailwind/vite css sourcemap broken error when building
+  vite: {
+    plugins: [
+      {
+        name: "vite-plugin-ignore-sourcemap-warnings",
+        apply: "build",
+        configResolved(config) {
+          config.build.rollupOptions.onwarn = (warning, warn) => {
+            if (
+              warning.code === "SOURCEMAP_BROKEN" &&
+              warning.plugin === "@tailwindcss/vite:generate:build"
+            ) {
+              return;
+            }
+
+            warn(warning);
+          };
+        },
+      },
+    ],
+  },
 });
