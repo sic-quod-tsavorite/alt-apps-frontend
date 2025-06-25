@@ -1,5 +1,9 @@
 # alt-apps-frontend
 
+Frontend for alt apps project
+
+![Github actions build status](https://github.com/sic-quod-tsavorite/alt-apps-frontend/actions/workflows/main.yaml/badge.svg)
+
 # Nuxt Minimal Starter
 
 Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
