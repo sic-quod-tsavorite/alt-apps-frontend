@@ -1,0 +1,30 @@
+name: ALT-APPS-FRONTEND CI/CD Pipeline
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [20.x, 24.x]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.2.2
+        with:
+          fetch-depth: 0 # Fetch entire repository contents
+
+      - name: Use Node.JS ${{ matrix.node-version }}
+        uses: actions/setup-node@v4.4.0
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: NPM install, build and test
+        run: |
+          npm install
+          npm run build
