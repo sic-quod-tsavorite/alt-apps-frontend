@@ -12,7 +12,7 @@
     <div v-else-if="error" class="text-center text-red-500">
       <p>
         Error loading programs:
-        {{ error.message || "500 Internal Server Error" }}
+        {{ error || "500 Internal Server Error" }}
       </p>
     </div>
 
@@ -20,7 +20,7 @@
     <div v-else class="flex flex-wrap -mx-2">
       <div
         v-for="program in programs"
-        :key="program.id"
+        :key="program._id"
         class="p-2 w-full sm:w-1/2 md:w-1/3"
       >
         <NuxtLink
