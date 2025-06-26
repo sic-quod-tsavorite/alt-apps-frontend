@@ -35,4 +35,10 @@ export default defineNuxtConfig({
       },
     ],
   },
+
+  runtimeConfig: {
+    public: {
+      BE_API_URL: process.env.BE_API_URL || "http://localhost:4000/aa-api",
+    },
+  },
 });

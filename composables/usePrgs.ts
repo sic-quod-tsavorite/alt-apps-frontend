@@ -1,12 +1,12 @@
-import { ref } from "vue";
 import type { Program } from "../types/interfaces";
 
-const API_URL = import.meta.env.BE_API_URL;
+const config = useRuntimeConfig();
+const API_URL = config.public.BE_API_URL;
 
 export const usePrgs = () => {
   const error = ref<string | null>(null);
   const loading = ref<boolean>(false);
-  const program = ref<Program[]>([]);
+  const programs = ref<Program[]>([]);
 
   const fetchPrgs = async () => {
     loading.value = true;
@@ -16,8 +16,8 @@ export const usePrgs = () => {
         throw new Error("Failed to fetch programs");
       }
       const data: Program[] = await response.json();
-      program.value = data;
-      console.log("Programs fetched: ", program.value);
+      programs.value = data;
+      console.log("Programs fetched: ", programs.value);
     } catch (err) {
       error.value = (err as Error).message;
     } finally {
@@ -28,7 +28,7 @@ export const usePrgs = () => {
   return {
     error,
     loading,
-    program,
+    programs,
     fetchPrgs,
   };
 };
