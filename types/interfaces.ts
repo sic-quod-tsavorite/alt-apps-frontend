@@ -10,3 +10,11 @@ export type Program = {
 export type newPrg = Omit<Program, "_id"> & {
   _createdBy?: string;
 };
+
+export type User = {
+  id: string;
+  name: string;
+  email: string;
+  password: string;
+  registerDate: string;
+};

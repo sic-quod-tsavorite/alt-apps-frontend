@@ -24,8 +24,12 @@
 
 <script lang="ts" setup>
 import type { NavigationMenuItem } from "@nuxt/ui";
+import { state } from "../composables/globalStates/state";
+import { useUsers } from "~/composables/auth/useUsers";
 
 const colorMode = useColorMode();
+
+const { logout } = useUsers();
 
 const modeIcon: Record<string, string> = {
   system: "material-symbols:auto-awesome",
@@ -33,11 +37,10 @@ const modeIcon: Record<string, string> = {
   dark: "material-symbols:dark-mode",
 };
 
-const items = ref<NavigationMenuItem[][]>([
-  [
+const items = computed<NavigationMenuItem[][]>(() => {
+  const menuItems: NavigationMenuItem[] = [
     {
       label: "Home",
-      //icon: 'i-lucide-book-open',
       to: "/",
     },
     {
@@ -48,8 +51,16 @@ const items = ref<NavigationMenuItem[][]>([
       label: "Dynamic Link",
       to: "/alternatives/dynamic-link",
     },
-  ],
-]);
+  ];
+
+  if (state.isLoggedIn) {
+    menuItems.push({ label: "Logout", onSelect: logout });
+  } else {
+    menuItems.push({ label: "Login", to: "/auth" });
+  }
+
+  return [menuItems];
+});
 </script>
 
 <style lang="scss" scoped>
