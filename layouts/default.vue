@@ -1,20 +1,21 @@
 <template>
   <UApp>
     <div class="antialiased">
-      <header>
+      <header class="sticky top-0 z-10">
         <div class="p-4 bg-gray-300 dark:bg-gray-950 flex">
           <UNavigationMenu color="neutral" :items="items" class="w-full" />
-          <UTooltip text="Choose theme">
+          <div class="theme-picker flex">
+            <span class="m-auto mr-2 theme-pre-text">Choose theme:</span>
             <Icon
               :name="modeIcon[$colorMode.preference]"
               class="w-5 h-5 m-auto"
             />
             <select v-model="$colorMode.preference" class="pl-2 pr-2 rounded">
-              <option value="system">System</option>
+              <option value="system">Auto</option>
               <option value="light">Light</option>
               <option value="dark">Dark</option>
             </select>
-          </UTooltip>
+          </div>
         </div>
       </header>
       <slot />
@@ -71,5 +72,41 @@ body {
 .dark-mode body {
   background-color: #091a28;
   color: #ebf4f1;
+}
+
+.theme-picker {
+  .theme-pre-text,
+  select {
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: all 0.3s ease-in-out;
+  }
+  .theme-pre-text {
+    width: max-content;
+    color: #00000000;
+  }
+  select {
+    margin-right: -70px;
+  }
+}
+
+.theme-picker:hover {
+  .theme-pre-text,
+  select {
+    transform: scaleX(1);
+    transition: all 0.3s ease-in-out;
+  }
+  .theme-pre-text {
+    color: #314158;
+  }
+  select {
+    margin-right: 0;
+  }
+}
+
+.dark .theme-picker:hover {
+  .theme-pre-text {
+    color: #e2e8f0;
+  }
 }
 </style>

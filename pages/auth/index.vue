@@ -1,5 +1,5 @@
 <template>
-  <div class="flex h-screen">
+  <div class="flex h-150">
     <!-- Left side with background image -->
     <div
       class="w-1/2 bg-cover bg-center"
@@ -11,9 +11,9 @@
 
     <!-- Right side with login and register forms -->
     <div class="w-1/2 bg-white flex-grow text-gray-800 flex flex-col p-8">
-      <!-- Top part: Login and Logout -->
+      <!-- Top part: Login -->
       <div class="mb-12">
-        <p class="text-3xl font-semibold mb-6 text-center">Welcome Back!</p>
+        <p class="text-3xl font-semibold mb-6 text-center">Welcome!</p>
         <input
           type="text"
           class="w-full mb-4 p-3 border border-gray-300 rounded-md bg-gray-50 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500"
@@ -31,12 +31,6 @@
           @click="fetchToken(email, password)"
         >
           Login
-        </button>
-        <button
-          class="bg-gray-500 text-white p-3 rounded-md hover:bg-gray-600 w-full mt-3 transition duration-200 ease-in-out"
-          @click="logout"
-        >
-          Logout
         </button>
       </div>
 
@@ -96,8 +90,7 @@
 <script setup lang="ts">
 import { useUsers } from "@/composables/auth/useUsers";
 
-const { fetchToken, registerUser, logout, name, email, password, user } =
-  useUsers();
+const { fetchToken, registerUser, name, email, password, user } = useUsers();
 const registerDialog = ref<HTMLDialogElement | null>(null);
 
 const toggleRegisterDialog = () => {
@@ -105,7 +98,7 @@ const toggleRegisterDialog = () => {
     if (registerDialog.value.open) {
       registerDialog.value.close();
     } else {
-      registerDialog.value.showModal(); // Use showModal for a proper modal dialog
+      registerDialog.value.showModal();
     }
   }
 };
@@ -114,38 +107,33 @@ const toggleRegisterDialog = () => {
 <style lang="scss" scoped>
 dialog {
   background-color: white;
-  border: 1px solid #d1d5db; /* gray-300 */
-  padding: 1.5rem; /* p-6 */
-  border-radius: 0.5rem; /* rounded-lg */
+  border: 1px solid #d1d5db;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-    0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-xl */
-
-  /* Centering the dialog */
-  position: fixed; /* Use fixed for true centering */
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  margin: 0; /* Remove default margin */
-  max-width: 90%; /* Limit width on smaller screens */
-  width: 400px; /* Fixed width for larger screens */
-
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  margin: 0;
+  max-width: 90%;
+  width: 400px;
   pointer-events: none;
   opacity: 0;
-  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  transform: scale(0);
+  transition: all 0.3s ease-in-out;
+  position: absolute;
+  top: auto;
+  left: auto;
+  right: 38px;
+  bottom: 38px;
 }
 
 dialog[open] {
   opacity: 1;
+  transition: all 0.3s ease-in-out;
   pointer-events: inherit;
-  transform: translate(-50%, -50%) scale(1); /* Scale in effect */
+  transform: scale(1);
 }
-
 dialog::backdrop {
-  background-color: rgba(0, 0, 0, 0.5); /* Darker backdrop */
-  backdrop-filter: blur(5px); /* Add a blur effect */
+  position: absolute;
+  z-index: -1;
 }
 </style>
