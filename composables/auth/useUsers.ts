@@ -11,6 +11,7 @@ export const useUsers = () => {
   const email = ref<string>("");
   const password = ref<string>("");
 
+  //login
   const fetchToken = async (email: string, password: string): Promise<void> => {
     try {
       const response = await fetch(API_URL + "/user/login", {

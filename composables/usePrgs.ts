@@ -1,9 +1,8 @@
 import type { Program } from "../types/interfaces";
 
-const config = useRuntimeConfig();
-const API_URL = config.public.BE_API_URL;
-
 export const usePrgs = () => {
+  const config = useRuntimeConfig();
+  const API_URL = config.public.BE_API_URL;
   const error = ref<string | null>(null);
   const loading = ref<boolean>(false);
   const programs = ref<Program[]>([]);
