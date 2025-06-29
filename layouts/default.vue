@@ -55,6 +55,10 @@ const items = computed<NavigationMenuItem[][]>(() => {
   ];
 
   if (state.isLoggedIn) {
+    menuItems.push({ label: "Admin", to: "/auth/admin" });
+  }
+
+  if (state.isLoggedIn) {
     menuItems.push({ label: "Logout", onSelect: logout });
   } else {
     menuItems.push({ label: "Login", to: "/auth" });
