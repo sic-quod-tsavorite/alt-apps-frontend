@@ -1,6 +1,6 @@
 <template>
   <div class="min-h-screen p-8">
-    <h1 class="text-3xl font-bold mb-8">Admin View</h1>
+    <h1 class="text-3xl font-bold mb-8">Admin Page</h1>
     <!-- Loading wait screen -->
     <div v-if="loading" class="text-center">Loading...</div>
     <!--<div v-else-if="error" class="text-center text-red-500">{{ error }}</div>-->
@@ -154,6 +154,10 @@
 <script setup lang="ts">
 import { usePrgs } from "~/composables/usePrgs";
 import type { Program } from "~/types/interfaces";
+
+definePageMeta({
+  middleware: ["auth-user"],
+});
 
 const {
   programs,
