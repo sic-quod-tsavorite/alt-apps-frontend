@@ -6,6 +6,12 @@
     <p>{{ program.country }}</p>
     <p>{{ program.altPrograms }}</p>
   </div>
+  <div v-else>
+    <h2 class="text-2xl font-bold text-center mt-8">
+      Error 404: Page Not Found
+    </h2>
+    <p class="text-center mt-4">Program doesn't exist.</p>
+  </div>
 </template>
 
 <script setup lang="ts">
