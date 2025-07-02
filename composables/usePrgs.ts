@@ -47,6 +47,7 @@ export const usePrgs = () => {
       logo: program.logo || "https://picsum.photos/500/500",
       country: program.country || "New Program country default value",
       isHidden: program.isHidden || false,
+      altPrograms: program.altPrograms || [],
       _createdBy: userId,
     };
   };

@@ -24,7 +24,7 @@
         class="p-2 w-full sm:w-1/2 md:w-1/3"
       >
         <NuxtLink
-          :to="`/alternatives/${program.name}`"
+          :to="`/alternatives/${program._id}`"
           class="text-blue-500 hover:underline"
         >
           <div class="border rounded p-4 h-full flex flex-col">

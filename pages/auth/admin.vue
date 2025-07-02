@@ -180,6 +180,7 @@ const newPrg = ref({
   country: "",
   isHidden: false,
   logo: "",
+  altPrograms: [],
   _createdBy: "",
 });
 
@@ -199,6 +200,7 @@ const updatePrgHandler = async (program: Program) => {
     country: program.country,
     logo: program.logo,
     isHidden: program.isHidden,
+    altPrograms: program.altPrograms,
   };
   await updatePrg(program._id, updatedPrg);
 };
