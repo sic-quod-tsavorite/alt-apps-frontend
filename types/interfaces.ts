@@ -14,18 +14,16 @@ export type Program = {
   logo: string;
   country: string;
   isHidden: boolean;
-  altPrograms: AltProgram["_id"][];
+  altPrograms: AltProgram[];
 };
 
 export type newPrg = Omit<Program, "_id"> & {
   _createdBy?: string;
 };
 
-/*
-export type AltProgram = Omit<Program, "altProgram, _id"> & {
+export type newAltPrg = Omit<AltProgram, "_id"> & {
   _createdBy?: string;
 };
-*/
 
 export type User = {
   id: string;
