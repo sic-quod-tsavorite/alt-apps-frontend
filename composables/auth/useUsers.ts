@@ -37,6 +37,7 @@ export const useUsers = () => {
       localStorage.setItem("userIDToken", authResponse.data.userId);
       console.log("user is logged in: ", authResponse);
       console.log("token: ", token.value);
+      navigateTo("/");
     } catch (err) {
       error.value = (err as Error).message || "An error occurred";
       state.isLoggedIn = false;
