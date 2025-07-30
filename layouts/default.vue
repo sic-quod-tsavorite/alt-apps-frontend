@@ -48,10 +48,6 @@ const items = computed<NavigationMenuItem[][]>(() => {
       label: "Alternatives",
       to: "/alternatives",
     },
-    {
-      label: "Dynamic Link",
-      to: "/alternatives/dynamic-link",
-    },
   ];
 
   if (state.isLoggedIn) {
